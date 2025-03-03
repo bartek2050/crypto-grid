@@ -1,7 +1,9 @@
+import { MainView } from "../src/views/MainView.tsx";
+
 function App() {
 
   return (
-      <h1>Crypto Grid</h1>
+      <MainView/>
   )
 }
 
