@@ -61,7 +61,7 @@ export const TopCoins = () => {
   }, []);
 
   const topCoinsList = topCoins.map(coin => (
-    <div>
+    <div key={coin.id}>
       <b>{coin.name}</b>
       <p>{coin.market_cap.toLocaleString()} USD</p>
     </div>
