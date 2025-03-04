@@ -30,7 +30,6 @@ export const GlobalData = () => {
           setError(new Error(`Could not fetch data: ${response.status} ${response.statusText}`));
           return;
         }
-        console.log(error, "error");
         const json = await response.json();
         setGlobalData(json.data);
       } catch (e) {
