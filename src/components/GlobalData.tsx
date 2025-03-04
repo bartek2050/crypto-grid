@@ -39,7 +39,7 @@ export const GlobalData = () => {
       }
     };
     fetchGlobalData();
-  }, [error]);
+  }, []);
   return (
     <>
       {loading && <p>Ładowanie danych...</p>}
