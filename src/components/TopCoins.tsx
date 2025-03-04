@@ -45,7 +45,8 @@ export const TopCoins = () => {
         setLoading(true);
         const response = await fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&per_page=20");
         if (!response.ok) {
-          throw new Error("Could not find TopCoin data");
+          setError(new Error(`Could not fetch data: ${response.status} ${response.statusText}`));
+          return;
         }
         const json = await response.json();
         setTopCoins(json);

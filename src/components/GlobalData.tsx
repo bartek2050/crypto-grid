@@ -27,7 +27,8 @@ export const GlobalData = () => {
         setLoading(true);
         const response = await fetch("https://api.coingecko.com/api/v3/global");
         if (!response.ok) {
-          throw new Error("Could not find global data");
+          setError(new Error(`Could not fetch data: ${response.status} ${response.statusText}`));
+          return;
         }
         console.log(error, "error");
         const json = await response.json();
@@ -39,7 +40,7 @@ export const GlobalData = () => {
       }
     };
     fetchGlobalData();
-  }, []);
+  }, [error]);
   return (
     <>
       {loading && <p>Ładowanie danych...</p>}
