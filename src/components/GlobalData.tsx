@@ -25,7 +25,7 @@ export const GlobalData = () => {
       try {
         setError(null);
         setLoading(true);
-        const response = await fetch("https://api.coingecko.com/api/v3/globala");
+        const response = await fetch("https://api.coingecko.com/api/v3/global");
         if (!response.ok) {
           throw new Error("Could not find global data");
         }
