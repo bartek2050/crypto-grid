@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { GlobalDataType } from "../views/MainView.tsx";
 
 interface TopCoinsData {
   id: string;
@@ -34,7 +35,7 @@ interface TopCoinsData {
 }
 
 
-export const TopCoins = () => {
+export const TopCoins = ({ globalData }: { globalData: GlobalDataType | null }) => {
   const [topCoins, setTopCoins] = useState<TopCoinsData[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
@@ -62,8 +63,10 @@ export const TopCoins = () => {
 
   const topCoinsList = topCoins.map(coin => (
     <div key={coin.id}>
-      <b>{coin.name}</b>
-      <p>{coin.market_cap.toLocaleString()} USD</p>
+      <b>Name: {coin.name}</b>
+      <p>Market Cap: {coin.market_cap.toLocaleString()} USD</p>
+      <p>Market Cap
+        Percentage: {globalData?.total_market_cap.usd && ((coin.market_cap / Number(globalData.total_market_cap.usd || 1)) * 100).toFixed(2)}%</p>
     </div>
   ));
   return (

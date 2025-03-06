@@ -1,22 +1,11 @@
-import { useEffect, useState } from "react";
+import { SetStateAction, useEffect, useState } from "react";
+import * as React from "react";
+import { GlobalDataType } from "../views/MainView.tsx";
 
-type CurrencyData = Record<string, number>;
-
-interface GlobalData {
-  active_cryptocurrencies: number;
-  upcoming_icos: number;
-  ongoing_icos: number;
-  ended_icos: number;
-  markets: number;
-  total_market_cap: CurrencyData;
-  total_volume: CurrencyData;
-  market_cap_percentage: CurrencyData;
-  market_cap_change_percentage_24h_usd: number;
-  updated_at: number;
-}
-
-export const GlobalData = () => {
-  const [globalData, setGlobalData] = useState<GlobalData | null>(null);
+export const GlobalData = ({ globalData, setGlobalData }: {
+  globalData: GlobalDataType | null,
+  setGlobalData: React.Dispatch<SetStateAction<GlobalDataType | null>>
+}) => {
   const [error, setError] = useState<Error | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
