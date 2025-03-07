@@ -61,6 +61,8 @@ export const TopCoins = ({ globalData }: { globalData: GlobalDataType | null }) 
     fetchTopCoinsData();
   }, []);
 
+  const topTwentyMarketCap = topCoins.reduce((total, coin) => total + coin.market_cap, 0);
+
   const topCoinsList = topCoins.map(coin => (
     <div key={coin.id}>
       <b>Name: {coin.name}</b>
