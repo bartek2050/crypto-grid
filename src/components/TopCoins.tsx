@@ -69,6 +69,8 @@ export const TopCoins = ({ globalData }: { globalData: GlobalDataType | null }) 
       <p>Market Cap: {coin.market_cap.toLocaleString()} USD</p>
       <p>Market Cap
         Percentage: {globalData?.total_market_cap.usd && ((coin.market_cap / Number(globalData.total_market_cap.usd || 1)) * 100).toFixed(2)}%</p>
+      <p>Top 20 Market Cap
+        Percentage: {topTwentyMarketCap && ((coin.market_cap / topTwentyMarketCap) * 100).toFixed(2)}%</p>
     </div>
   ));
   return (
