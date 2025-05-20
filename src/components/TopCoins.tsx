@@ -44,7 +44,7 @@ export const TopCoins = ({ globalData }: { globalData: GlobalDataType | null }) 
     const fetchTopCoinsData = async () => {
       try {
         setLoading(true);
-        const response = await fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&per_page=30");
+        const response = await fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&per_page=20");
         if (!response.ok) {
           setError(new Error(`Could not fetch data: ${response.status} ${response.statusText}`));
           return;
@@ -60,8 +60,6 @@ export const TopCoins = ({ globalData }: { globalData: GlobalDataType | null }) 
 
     fetchTopCoinsData();
   }, []);
-
-  console.log(topCoins);
 
   const topTwentyMarketCap = topCoins.reduce((total, coin) => total + coin.market_cap, 0);
 

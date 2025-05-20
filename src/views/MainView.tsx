@@ -1,6 +1,7 @@
 import { GlobalData } from "../components/GlobalData.tsx";
 import { TopCoins } from "../components/TopCoins.tsx";
 import { useState } from "react";
+import { Treemap } from "../components/Treemap.tsx";
 
 type CurrencyDataType = Record<string, number>;
 
@@ -23,6 +24,7 @@ export const MainView = () => {
   return (
     <>
       <h1>Crypto Grid</h1>
+      <Treemap />
       <GlobalData setGlobalData={setGlobalData} globalData={globalData} />
       <TopCoins globalData={globalData} />
     </>
