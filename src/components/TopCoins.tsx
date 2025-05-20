@@ -44,7 +44,7 @@ export const TopCoins = ({ globalData }: { globalData: GlobalDataType | null }) 
     const fetchTopCoinsData = async () => {
       try {
         setLoading(true);
-        const response = await fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&per_page=20");
+        const response = await fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&per_page=30");
         if (!response.ok) {
           setError(new Error(`Could not fetch data: ${response.status} ${response.statusText}`));
           return;
@@ -61,6 +61,8 @@ export const TopCoins = ({ globalData }: { globalData: GlobalDataType | null }) 
     fetchTopCoinsData();
   }, []);
 
+  console.log(topCoins);
+
   const topTwentyMarketCap = topCoins.reduce((total, coin) => total + coin.market_cap, 0);
 
   const topCoinsList = topCoins.map(coin => (
@@ -71,6 +73,7 @@ export const TopCoins = ({ globalData }: { globalData: GlobalDataType | null }) 
         Percentage: {globalData?.total_market_cap.usd && ((coin.market_cap / Number(globalData.total_market_cap.usd || 1)) * 100).toFixed(2)}%</p>
       <p>Top 20 Market Cap
         Percentage: {topTwentyMarketCap && ((coin.market_cap / topTwentyMarketCap) * 100).toFixed(2)}%</p>
+      <p>Price change 24h: {coin.price_change_percentage_24h.toFixed(2)}%</p>
     </div>
   ));
   return (
