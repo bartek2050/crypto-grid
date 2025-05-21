@@ -30,7 +30,7 @@ export const useCryptoData = () => {
         throw new Error(`Could not fetch top coins data: ${response.status} ${response.statusText}`);
       }
       const json = await response.json();
-      setTopCoinsData(json.data);
+      setTopCoinsData(json);
     } catch (e) {
       setError(e as Error);
     }

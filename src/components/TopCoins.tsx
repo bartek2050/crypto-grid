@@ -4,7 +4,6 @@ import { useCryptoData } from "../hooks/useCryptoData.tsx";
 export const TopCoins = () => {
   const { globalData, topCoinsData, isLoading, error } = useCryptoData();
 
-
   const topTwentyMarketCap = topCoinsData?.reduce((total, coin) => total + coin.market_cap, 0);
 
   const topCoinsList = topCoinsData?.map(coin => (
