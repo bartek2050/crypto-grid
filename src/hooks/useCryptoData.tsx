@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { GlobalDataType, TopCoinsDataType } from "../types/types.ts";
+import { GlobalDataType, TopCoinsDataList } from "../types/types.ts";
 
 
 export const useCryptoData = () => {
   const [globalData, setGlobalData] = useState<GlobalDataType | null>(null);
-  const [topCoinsData, setTopCoinsData] = useState<TopCoinsDataType | null>(null);
+  const [topCoinsData, setTopCoinsData] = useState<TopCoinsDataList | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 
@@ -30,6 +30,7 @@ export const useCryptoData = () => {
         throw new Error(`Could not fetch top coins data: ${response.status} ${response.statusText}`);
       }
       const json = await response.json();
+      console.log(json);
       setTopCoinsData(json);
     } catch (e) {
       setError(e as Error);

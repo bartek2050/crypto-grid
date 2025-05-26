@@ -13,7 +13,7 @@ export interface GlobalDataType {
   updated_at: number;
 }
 
-export interface TopCoinsDataType {
+interface TopCoinsDataType {
   id: string;
   symbol: string;
   name: string;
@@ -34,14 +34,16 @@ export interface TopCoinsDataType {
   max_supply: number;
   ath: number;
   ath_change_percentage: number;
-  ath_date: string; // ISO date format
+  ath_date: string;
   atl: number;
   atl_change_percentage: number;
-  atl_date: string; // ISO date format
-  roi?: string; // Nieokreślone w przykładzie, więc pozostawione opcjonalnie
-  last_updated: string; // ISO date format
+  atl_date: string;
+  roi?: string;
+  last_updated: string;
   price_change_percentage_1h: number;
   sparkline_in_7d: {
     price: number[];
   };
 }
+
+export type TopCoinsDataList = TopCoinsDataType[];
