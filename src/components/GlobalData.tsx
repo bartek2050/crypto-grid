@@ -1,7 +1,7 @@
-import { useCryptoData } from "../hooks/useCryptoData.tsx";
+import { useCrypto } from "../context/CryptoDataContext.tsx";
 
 export const GlobalData = () => {
-  const { globalData, isLoading, error } = useCryptoData();
+  const { globalData, isLoading, error } = useCrypto();
 
   return (
     <>

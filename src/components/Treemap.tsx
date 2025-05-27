@@ -1,9 +1,9 @@
 import { treemap, hierarchy } from "d3-hierarchy";
 import { useMemo } from "react";
-import { useCryptoData } from "../hooks/useCryptoData.tsx";
+import { useCrypto } from "../context/CryptoDataContext.tsx";
 
 export const Treemap = () => {
-  const { topCoinsData, globalData } = useCryptoData();
+  const { topCoinsData, globalData } = useCrypto();
 
 
   const width = 1100;

@@ -75,8 +75,8 @@ export const CryptoDataProvider: React.FC<{ children: React.ReactNode }> = ({ ch
 
 export const useCrypto = () => {
   const context = useContext(CryptoContext);
-  if (context === undefined) {
-    throw new Error("useCrypto must be used within a CryptoDataProvider");
+  if (!context) {
+    throw new Error("useCryptoData must be used within a CryptoDataProvider");
   }
   return context;
 };
