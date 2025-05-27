@@ -1,27 +1,20 @@
 import { treemap, hierarchy } from "d3-hierarchy";
 import { useMemo } from "react";
+import { useCryptoData } from "../hooks/useCryptoData.tsx";
 
 export const Treemap = () => {
-  const cryptoData = [
-    { name: "BTC", marketCap: 1000, change: 3.37 },
-    { name: "ETH", marketCap: 500, change: 2.91 },
-    { name: "BNB", marketCap: 200, change: 1.24 },
-    { name: "SOL", marketCap: 150, change: 3.78 },
-    { name: "ADA", marketCap: 100, change: -0.5 },
-    { name: "XRP", marketCap: 120, change: 1.28 },
-    { name: "USDT", marketCap: 100, change: 0.02 },
-    { name: "DOT", marketCap: 80, change: 0.5 }
-  ];
+  const { topCoinsData, globalData } = useCryptoData();
 
-  const width = 700;
-  const height = 600;
+
+  const width = 1100;
+  const height = 700;
 
   const treeHierarchy = useMemo(() => {
-    return hierarchy({ children: cryptoData }).sum((d) => d.marketCap);
-  }, [cryptoData]);
+    return hierarchy({ children: topCoinsData }).sum((d) => d.market_cap);
+  }, [topCoinsData]);
 
   const cryptomapLayout = useMemo(() => {
-    const treeGenerator = treemap().size([width, height]).padding(4);
+    const treeGenerator = treemap().size([width, height]).padding(0).paddingInner(2);
     return treeGenerator(treeHierarchy);
   }, [treeHierarchy]);
 
