@@ -1,8 +1,18 @@
-import { useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { GlobalDataType, TopCoinsDataList } from "../types/types.ts";
+import * as React from "react";
 
+interface CryptoDataContextType {
+  globalData: GlobalDataType | null;
+  topCoinsData: TopCoinsDataList | null;
+  isLoading: boolean;
+  error: Error | null;
+  refetch: () => Promise<void>;
+}
 
-export const useCryptoData = () => {
+const CryptoContext = createContext<CryptoDataContextType | undefined>(undefined);
+
+export const CryptoDataProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [globalData, setGlobalData] = useState<GlobalDataType | null>(null);
   const [topCoinsData, setTopCoinsData] = useState<TopCoinsDataList | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -48,11 +58,25 @@ export const useCryptoData = () => {
     refetch();
   }, []);
 
-  return {
+  const contextValue = {
     globalData,
     topCoinsData,
     isLoading,
     error,
     refetch
   };
+
+  return (
+    <CryptoContext.Provider value={contextValue}>
+      {children}
+    </CryptoContext.Provider>
+  );
+};
+
+export const useCrypto = () => {
+  const context = useContext(CryptoContext);
+  if (context === undefined) {
+    throw new Error("useCrypto must be used within a CryptoDataProvider");
+  }
+  return context;
 };
