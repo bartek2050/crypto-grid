@@ -13,7 +13,7 @@ export interface GlobalDataType {
   updated_at: number;
 }
 
-interface TopCoinsDataType {
+export interface TopCoinsDataType {
   id: string;
   symbol: string;
   name: string;
