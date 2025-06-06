@@ -4,7 +4,7 @@ import * as React from "react";
 
 interface CryptoDataContextType {
   globalData: GlobalDataType | null;
-  topCoinsData: TopCoinsDataList | null;
+  topCoinsData: TopCoinsDataList;
   isLoading: boolean;
   error: Error | null;
   refetch: () => Promise<void>;
@@ -14,7 +14,7 @@ const CryptoContext = createContext<CryptoDataContextType | undefined>(undefined
 
 export const CryptoDataProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [globalData, setGlobalData] = useState<GlobalDataType | null>(null);
-  const [topCoinsData, setTopCoinsData] = useState<TopCoinsDataList | null>(null);
+  const [topCoinsData, setTopCoinsData] = useState<TopCoinsDataList>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 
@@ -40,7 +40,6 @@ export const CryptoDataProvider: React.FC<{ children: React.ReactNode }> = ({ ch
         throw new Error(`Could not fetch top coins data: ${response.status} ${response.statusText}`);
       }
       const json = await response.json();
-      console.log(json);
       setTopCoinsData(json);
     } catch (e) {
       setError(e as Error);
