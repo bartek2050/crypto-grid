@@ -4,10 +4,20 @@ import { useCrypto } from "../context/CryptoDataContext.tsx";
 import { TopCoinsDataList, TopCoinsDataType } from "../types/types.ts";
 
 export const Treemap = () => {
-  const { topCoinsData } = useCrypto();
+  const { globalData, topCoinsData } = useCrypto();
+
+  const priceChangeColor = (priceChange: number) => {
+    if (priceChange > 0) {
+      return "#31B855";
+    } else if (priceChange < 0) {
+      return "#F53538";
+    } else {
+      return "#414554";
+    }
+  };
 
   const width = 1100;
-  const height = 700;
+  const height = 800;
 
   const treeHierarchy = useMemo(() => {
     return hierarchy<TopCoinsDataType | { children: TopCoinsDataList }>({ children: topCoinsData })
@@ -20,7 +30,7 @@ export const Treemap = () => {
   }, [treeHierarchy]);
 
 
-  const allShapes = cryptomapLayout.leaves().map((leaf, i) => {
+  const allShapes = cryptomapLayout.leaves().map((leaf) => {
     const data = leaf.data as TopCoinsDataType;
     return (
       <g key={leaf.id}>
@@ -30,7 +40,7 @@ export const Treemap = () => {
           y={leaf.y0}
           width={leaf.x1 - leaf.x0}
           height={leaf.y1 - leaf.y0}
-          fill={data.price_change_24h >= 0 ? "#31B855" : "#F53538"}
+          fill={priceChangeColor(+data.price_change_percentage_24h?.toFixed(2) || 0)}
           stroke="transparent"
         />
         <text
@@ -40,9 +50,8 @@ export const Treemap = () => {
           textAnchor="start"
           alignmentBaseline="hanging"
           fill="white"
-          className="font-bold"
         >
-          {i + 1}. {data.name} {data.price_change_percentage_24h?.toFixed(2)}%
+          {data.name} {data.price_change_percentage_24h?.toFixed(2)}%
         </text>
         <text
           x={leaf.x0 + 3}
@@ -51,9 +60,8 @@ export const Treemap = () => {
           textAnchor="start"
           alignmentBaseline="hanging"
           fill="white"
-          className="font-light"
         >
-          {data.market_cap?.toLocaleString()}
+          ({globalData?.total_market_cap.usd && ((data.market_cap / Number(globalData.total_market_cap.usd || 1)) * 100).toFixed(2)}%)
         </text>
       </g>
     );

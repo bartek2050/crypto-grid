@@ -1,9 +1,12 @@
 import { useCrypto } from "../context/CryptoDataContext.tsx";
 
-export const TopCoins = () => {
+type TopCoinsProps = {
+  topTwentyMarketCap: number
+}
+
+export const TopCoins: React.FC<TopCoinsProps> = ({ topTwentyMarketCap }) => {
   const { globalData, topCoinsData, isLoading, error } = useCrypto();
 
-  const topTwentyMarketCap = topCoinsData?.reduce((total, coin) => total + coin.market_cap, 0);
 
   const topCoinsList = topCoinsData?.map(coin => (
     <div key={coin.id}>
