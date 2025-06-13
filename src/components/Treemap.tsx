@@ -24,13 +24,13 @@ export const Treemap = () => {
     const data = leaf.data as TopCoinsDataType;
     return (
       <g key={leaf.id}>
-        <title>{data.name} - {data.price_change_percentage_24h}%</title>
+        <title>{data.name}{data.price_change_percentage_24h?.toFixed(2)}%</title>
         <rect
           x={leaf.x0}
           y={leaf.y0}
           width={leaf.x1 - leaf.x0}
           height={leaf.y1 - leaf.y0}
-          fill={data.price_change_24h >= 0 ? "green" : "red"}
+          fill={data.price_change_24h >= 0 ? "#31B855" : "#F53538"}
           stroke="transparent"
         />
         <text
