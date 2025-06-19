@@ -105,7 +105,7 @@ export const Treemap = () => {
   });
 
   return (
-    <div>
+    <div className="treemap-wrapper">
       <svg width={width} height={height}>
         {allShapes}
       </svg>

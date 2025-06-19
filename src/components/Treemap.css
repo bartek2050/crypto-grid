@@ -2,3 +2,7 @@
     text-transform: uppercase;
     font-weight: 700;
 }
+
+.treemap-wrapper {
+    margin: 8px 0;
+}
