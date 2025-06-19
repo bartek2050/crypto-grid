@@ -4,8 +4,8 @@ import "./GlobalData.css";
 export const GlobalData = () => {
   const { globalData, isLoading, error } = useCrypto();
 
-  const timeUpdate = globalData?.updated_at;
-  const date = new Date(timeUpdate! * 1000);
+  const lastDataUpdate = globalData?.updated_at;
+  const date = new Date(lastDataUpdate! * 1000);
   const time = date.toLocaleTimeString();
 
   return (
