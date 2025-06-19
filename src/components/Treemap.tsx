@@ -76,7 +76,7 @@ export const Treemap = () => {
         </text>
         <text
           x={leaf.x0 + 3}
-          y={leaf.y0 + 14}
+          y={leaf.y0 + 16}
           fontSize={fontSize}
           textLength={(leaf.x1 - leaf.x0) < 40 ? 25 : "none"}
           textAnchor="start"
@@ -89,7 +89,7 @@ export const Treemap = () => {
         </text>
         <text
           x={(leaf.x1 - leaf.x0) < 40 ? leaf.x0 + 1 : leaf.x0 + 3}
-          y={leaf.y0 + 25}
+          y={leaf.y0 + 29}
           fontSize={fontSize}
           textLength={(leaf.x1 - leaf.x0) < 40 ? 25 : "none"}
           textAnchor="start"
