@@ -4,18 +4,14 @@ import { useCrypto } from "../context/CryptoDataContext.tsx";
 import { TopCoinsDataList, TopCoinsDataType } from "../types/types.ts";
 import "./Treemap.css";
 
+const getPriceChangeColor = (priceChange: number) => {
+  if (priceChange > 0) return "#31B855";
+  if (priceChange < 0) return "#F53538";
+  return "#414554";
+};
+
 export const Treemap = () => {
   const { globalData, topCoinsData } = useCrypto();
-
-  const priceChangeColor = (priceChange: number) => {
-    if (priceChange > 0) {
-      return "#31B855";
-    } else if (priceChange < 0) {
-      return "#F53538";
-    } else {
-      return "#414554";
-    }
-  };
 
   const width = 1250;
   const height = 900;
@@ -58,7 +54,7 @@ export const Treemap = () => {
           y={leaf.y0}
           width={leaf.x1 - leaf.x0}
           height={leaf.y1 - leaf.y0}
-          fill={priceChangeColor(+data.price_change_percentage_24h?.toFixed(2) || 0)}
+          fill={getPriceChangeColor(+data.price_change_percentage_24h?.toFixed(2) || 0)}
           stroke="transparent"
 
         />
