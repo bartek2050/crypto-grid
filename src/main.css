@@ -1,0 +1,6 @@
+@import "./reset.css";
+@import "./index.css";
+@import "./components/css/GlobalData.css";
+@import "./components/css/TopCoins.css";
+@import "./components/css/Treemap.css";
+@import "./components/css/Header.css";
