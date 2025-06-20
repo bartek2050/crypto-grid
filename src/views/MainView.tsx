@@ -6,7 +6,6 @@ import { useCrypto } from "../context/CryptoDataContext.tsx";
 
 export const MainView = () => {
   const { topCoinsData } = useCrypto();
-
   const topTwentyMarketCap = topCoinsData?.reduce((total, coin) => total + coin.market_cap, 0);
 
   return (

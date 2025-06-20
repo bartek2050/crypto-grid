@@ -1,5 +1,4 @@
 import { useCrypto } from "../context/CryptoDataContext.tsx";
-import "./GlobalData.css";
 
 export const GlobalData = () => {
   const { globalData, isLoading, error } = useCrypto();

@@ -2,13 +2,7 @@ import { treemap, hierarchy, HierarchyNode } from "d3-hierarchy";
 import { useMemo } from "react";
 import { useCrypto } from "../context/CryptoDataContext.tsx";
 import { TopCoinsDataList, TopCoinsDataType } from "../types/types.ts";
-import "./Treemap.css";
-
-const getPriceChangeColor = (priceChange: number) => {
-  if (priceChange > 0) return "#31B855";
-  if (priceChange < 0) return "#F53538";
-  return "#414554";
-};
+import { getPriceChangeColor } from "../helper/getPriceChangeColor.ts";
 
 export const Treemap = () => {
   const { globalData, topCoinsData } = useCrypto();

@@ -1,3 +1,38 @@
+.top-coins-wrapper {
+    padding: 16px 0 32px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.coin-name {
+    font-weight: 700;
+}
+
+.coin-name img {
+    width: 12px;
+    height: 12px;
+    margin-right: 8px;
+}
+
+.price-change {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.price-change-value {
+    width: 64px;
+    text-align: right;
+}
+
+.price-change-circle {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
 table {
     border-collapse: collapse;
     width: 1000px;
@@ -15,4 +50,15 @@ th, td {
 
 th:last-child, td:last-child {
     border-right: none;
+}
+
+td a {
+    text-decoration: none;
+    color: #f2f2f2;
+    transition: all 0.4s ease-in-out;
+}
+
+td a:hover {
+    color: #31B855;
+    transition: all 0.4s ease-in-out;
 }
