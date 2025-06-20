@@ -35,13 +35,14 @@ export const Treemap = () => {
     const data = leaf.data as TopCoinsDataType;
     const clipPathId = `clip-${data.name}`;
     const leafWidth = leaf.x1 - leaf.x0;
+    const marketCap = globalData?.total_market_cap.usd && ((data.market_cap / Number(globalData.total_market_cap.usd || 1)) * 100).toFixed(2);
 
     let fontSize = 14;
 
     if (leafWidth < 100) {
       fontSize = 8;
     } else if (leafWidth < 60) {
-      fontSize = 4;
+      fontSize = 6;
     }
 
     return (
@@ -51,7 +52,7 @@ export const Treemap = () => {
             <rect x={leaf.x0} y={leaf.y0} width={leaf.x1 - leaf.x0} height={leaf.y1 - leaf.y0} fill="none" />
           </clipPath>
         </defs>
-        <title>{data.name}{data.price_change_percentage_24h?.toFixed(2)}%</title>
+        <title>{data.name} - {marketCap}%</title>
         <rect
           x={leaf.x0}
           y={leaf.y0}
@@ -64,7 +65,6 @@ export const Treemap = () => {
         <text
           x={leaf.x0 + 3}
           y={leaf.y0 + 3}
-          // textLength={(leaf.x1 - leaf.x0) < 100 ? 100 : "none"}
           fontSize={fontSize}
           textAnchor="start"
           alignmentBaseline="hanging"
@@ -85,12 +85,12 @@ export const Treemap = () => {
           clipPath={`url(#${clipPathId})`}
           className="coin-capitalization"
         >
-          {data.price_change_percentage_24h?.toFixed(2)}%
+          {marketCap}%
         </text>
         <text
           x={(leaf.x1 - leaf.x0) < 40 ? leaf.x0 + 1 : leaf.x0 + 3}
           y={leaf.y0 + 29}
-          fontSize={fontSize}
+          fontSize={fontSize - 2}
           textLength={(leaf.x1 - leaf.x0) < 40 ? 25 : "none"}
           textAnchor="start"
           alignmentBaseline="hanging"
@@ -98,7 +98,7 @@ export const Treemap = () => {
           clipPath={`url(#${clipPathId})`}
           className="coin-capitalization"
         >
-          ({globalData?.total_market_cap.usd && ((data.market_cap / Number(globalData.total_market_cap.usd || 1)) * 100).toFixed(2)}%)
+          ({data.price_change_percentage_24h?.toFixed(2)}%)
         </text>
       </g>
     );
