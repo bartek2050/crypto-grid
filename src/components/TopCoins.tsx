@@ -40,7 +40,9 @@ export const TopCoins: React.FC<TopCoinsProps> = ({ topTwentyMarketCap }) => {
           <th></th>
         </tr>
         </thead>
+        <tbody>
         {!error && !isLoading && topCoinsList}
+        </tbody>
       </table>
     </div>
   );

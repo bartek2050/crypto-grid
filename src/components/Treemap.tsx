@@ -7,6 +7,8 @@ import { getPriceChangeColor } from "../helper/getPriceChangeColor.ts";
 export const Treemap = () => {
   const { globalData, topCoinsData } = useCrypto();
 
+  console.log(topCoinsData);
+
   const width = 1250;
   const height = 900;
 
@@ -21,7 +23,7 @@ export const Treemap = () => {
   }, [treeHierarchy]);
 
 
-  const allShapes = cryptomapLayout.leaves().map((leaf) => {
+  const allShapes = cryptomapLayout.leaves().map((leaf, index) => {
     const data = leaf.data as TopCoinsDataType;
     const clipPathId = `clip-${data.name}`;
     const leafWidth = leaf.x1 - leaf.x0;
@@ -36,7 +38,7 @@ export const Treemap = () => {
     }
 
     return (
-      <g key={data.name}>
+      <g key={`${data.id}-${index}`} className={data.name}>
         <defs>
           <clipPath id={clipPathId}>
             <rect x={leaf.x0} y={leaf.y0} width={leaf.x1 - leaf.x0} height={leaf.y1 - leaf.y0} fill="none" />
@@ -68,7 +70,7 @@ export const Treemap = () => {
           x={leaf.x0 + 3}
           y={leaf.y0 + 16}
           fontSize={fontSize}
-          textLength={(leaf.x1 - leaf.x0) < 40 ? 25 : "none"}
+          textLength={(leaf.x1 - leaf.x0) < 40 ? 25 : undefined}
           textAnchor="start"
           alignmentBaseline="hanging"
           fill="white"
@@ -81,7 +83,7 @@ export const Treemap = () => {
           x={(leaf.x1 - leaf.x0) < 40 ? leaf.x0 + 1 : leaf.x0 + 3}
           y={leaf.y0 + 29}
           fontSize={fontSize - 2}
-          textLength={(leaf.x1 - leaf.x0) < 40 ? 25 : "none"}
+          textLength={(leaf.x1 - leaf.x0) < 40 ? 25 : undefined}
           textAnchor="start"
           alignmentBaseline="hanging"
           fill="white"
