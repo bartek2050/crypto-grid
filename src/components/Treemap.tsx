@@ -59,7 +59,7 @@ export const Treemap = () => {
           y={leaf.y0 + 3}
           fontSize={fontSize}
           textAnchor="start"
-          alignmentBaseline="hanging"
+          dominantBaseline="text-before-edge"
           fill="white"
           clipPath={`url(#${clipPathId})`}
           className="coin-name"
@@ -72,7 +72,7 @@ export const Treemap = () => {
           fontSize={fontSize}
           textLength={(leaf.x1 - leaf.x0) < 40 ? 25 : undefined}
           textAnchor="start"
-          alignmentBaseline="hanging"
+          dominantBaseline="text-before-edge"
           fill="white"
           clipPath={`url(#${clipPathId})`}
           className="coin-capitalization"
@@ -85,7 +85,7 @@ export const Treemap = () => {
           fontSize={fontSize - 2}
           textLength={(leaf.x1 - leaf.x0) < 40 ? 25 : undefined}
           textAnchor="start"
-          alignmentBaseline="hanging"
+          dominantBaseline="text-before-edge"
           fill="white"
           clipPath={`url(#${clipPathId})`}
           className="coin-capitalization"
