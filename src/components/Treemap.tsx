@@ -15,13 +15,13 @@ export const Treemap = () => {
       .sum((d) => (d as TopCoinsDataType).market_cap || 0);
   }, [topCoinsData]);
 
-  const cryptomapLayout = useMemo(() => {
+  const cryptoMapLayout = useMemo(() => {
     const treeGenerator = treemap().size([width, height]).padding(0).paddingInner(2);
     return treeGenerator(treeHierarchy as HierarchyNode<unknown>);
   }, [treeHierarchy]);
 
 
-  const allShapes = cryptomapLayout.leaves().map((leaf, index) => {
+  const allShapes = cryptoMapLayout.leaves().map((leaf, index) => {
     const data = leaf.data as TopCoinsDataType;
     const clipPathId = `clip-${data.name}`;
     const leafWidth = leaf.x1 - leaf.x0;
