@@ -7,8 +7,6 @@ import { getPriceChangeColor } from "../helper/getPriceChangeColor.ts";
 export const Treemap = () => {
   const { globalData, topCoinsData } = useCrypto();
 
-  console.log(topCoinsData);
-
   const width = 1250;
   const height = 900;
 
