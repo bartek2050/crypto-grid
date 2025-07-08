@@ -1,6 +1,10 @@
 import { useCrypto } from "../context/CryptoDataContext.tsx";
 
-export const GlobalData = () => {
+type GlobalDataType = {
+  topTwentyMarketCap: number
+}
+
+export const GlobalData: React.FC<GlobalDataType> = ({ topTwentyMarketCap }) => {
   const { globalData, isLoading, error } = useCrypto();
 
   const formatLastDateUpdate = (timestamp: number | undefined) => {
@@ -18,7 +22,34 @@ export const GlobalData = () => {
       {isLoading && <p>Ładowanie danych...</p>}
       {error && <p style={{ color: "red" }}>Błąd: {error.message}</p>}
       <div className="global-data-wrapper">
-        {globalData && <p>Total market cap: {globalData.total_market_cap.usd.toLocaleString()} USD</p>}
+        <div className="global-data-cap">
+          <div>
+            <span>Total market cap:</span>
+            <span>
+                {(globalData?.total_market_cap.usd)?.toLocaleString(undefined, {
+                  style: "currency",
+                  maximumFractionDigits: 0,
+                  currency: "USD"
+                })}
+            </span>
+            <span>
+              (100%)
+            </span>
+          </div>
+          <div>
+            <span>Top 20 market cap:</span>
+            <span>
+              {topTwentyMarketCap?.toLocaleString(undefined, {
+                style: "currency",
+                maximumFractionDigits: 0,
+                currency: "USD"
+              })}
+            </span>
+            <span>
+              ({(topTwentyMarketCap / (globalData?.total_market_cap.usd || 1)).toLocaleString(undefined, { style: "percent" })})
+            </span>
+          </div>
+        </div>
         {globalData && <p>Last update: {formatLastDateUpdate(globalData.updated_at)}</p>}
       </div>
     </>

@@ -1,4 +1,18 @@
 .global-data-wrapper {
     display: flex;
     justify-content: space-between;
+    align-items: flex-end;
+}
+
+.global-data-cap div {
+    width: 440px;
+    display: flex;
+}
+
+.global-data-cap div span:first-child {
+    min-width: 190px;
+}
+
+.global-data-cap div span:last-child {
+    padding-left: 8px;
 }

@@ -11,7 +11,7 @@ export const MainView = () => {
   return (
     <>
       <Header />
-      <GlobalData />
+      <GlobalData topTwentyMarketCap={topTwentyMarketCap} />
       <Treemap />
       <TopCoins topTwentyMarketCap={topTwentyMarketCap} />
     </>
