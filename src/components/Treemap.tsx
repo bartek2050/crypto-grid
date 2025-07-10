@@ -5,10 +5,12 @@ import { TopCoinsDataList, TopCoinsDataType } from "../types/types.ts";
 import { getPriceChangeColor } from "../helper/getPriceChangeColor.ts";
 
 export const Treemap = () => {
-  const { globalData, topCoinsData } = useCrypto();
+  const { topCoinsData, topTwentyMarketCap } = useCrypto();
 
   const width = 1250;
   const height = 900;
+
+  console.log({ topCoinsData });
 
   const treeHierarchy = useMemo(() => {
     return hierarchy<TopCoinsDataType | { children: TopCoinsDataList }>({ children: topCoinsData })
@@ -22,10 +24,11 @@ export const Treemap = () => {
 
 
   const allShapes = cryptoMapLayout.leaves().map((leaf, index) => {
-    const data = leaf.data as TopCoinsDataType;
-    const clipPathId = `clip-${data.name}`;
+    const coin = leaf.data as TopCoinsDataType;
+    console.log({ coin });
+    const clipPathId = `clip-${coin.name}`;
     const leafWidth = leaf.x1 - leaf.x0;
-    const marketCap = globalData?.total_market_cap.usd && ((data.market_cap / Number(globalData.total_market_cap.usd || 1)) * 100).toFixed(2);
+    const coinMarketCap = topTwentyMarketCap && ((coin.market_cap / Number(topTwentyMarketCap || 1)) * 100).toFixed(2);
 
     let fontSize = 14;
 
@@ -36,19 +39,19 @@ export const Treemap = () => {
     }
 
     return (
-      <g key={`${data.id}-${index}`} className={data.name}>
+      <g key={`${coin.id}-${index}`} className={coin.name}>
         <defs>
           <clipPath id={clipPathId}>
             <rect x={leaf.x0} y={leaf.y0} width={leaf.x1 - leaf.x0} height={leaf.y1 - leaf.y0} fill="none" />
           </clipPath>
         </defs>
-        <title>{data.name} - {marketCap}%</title>
+        <title>{coin.name} - {coinMarketCap}%</title>
         <rect
           x={leaf.x0}
           y={leaf.y0}
           width={leaf.x1 - leaf.x0}
           height={leaf.y1 - leaf.y0}
-          fill={getPriceChangeColor(+data.price_change_percentage_24h?.toFixed(2) || 0)}
+          fill={getPriceChangeColor(+coin.price_change_percentage_24h?.toFixed(2) || 0)}
           stroke="transparent"
 
         />
@@ -62,7 +65,7 @@ export const Treemap = () => {
           clipPath={`url(#${clipPathId})`}
           className="coin-name"
         >
-          {data.symbol}
+          {coin.symbol}
         </text>
         <text
           x={leaf.x0 + 3}
@@ -75,7 +78,7 @@ export const Treemap = () => {
           clipPath={`url(#${clipPathId})`}
           className="coin-capitalization"
         >
-          {marketCap}%
+          {coinMarketCap}%
         </text>
         <text
           x={(leaf.x1 - leaf.x0) < 40 ? leaf.x0 + 1 : leaf.x0 + 3}
@@ -88,7 +91,7 @@ export const Treemap = () => {
           clipPath={`url(#${clipPathId})`}
           className="coin-capitalization"
         >
-          ({data.price_change_percentage_24h?.toFixed(2)}%)
+          ({coin.price_change_percentage_24h?.toFixed(2)}%)
         </text>
       </g>
     );

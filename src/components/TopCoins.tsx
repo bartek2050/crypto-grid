@@ -4,7 +4,6 @@ import { getPriceChangeColor } from "./../helper/getPriceChangeColor.ts";
 export const TopCoins = () => {
   const { globalData, topCoinsData, topTwentyMarketCap, isLoading, error } = useCrypto();
 
-
   const topCoinsList = topCoinsData?.map(coin => (
     <tr key={coin.id}>
       <td className="coin-name"><img src={coin.image} alt={coin.name} />{coin.name}</td>
@@ -21,6 +20,7 @@ export const TopCoins = () => {
       <td><a href={`https://www.coingecko.com/en/coins/${coin.id}`}>more →</a></td>
     </tr>
   ));
+
   return (
     <div className="top-coins-wrapper">
       {isLoading && <p>Loading top coins...</p>}
