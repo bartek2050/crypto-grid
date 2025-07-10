@@ -1,12 +1,8 @@
 import { useCrypto } from "../context/CryptoDataContext.tsx";
 import { getPriceChangeColor } from "./../helper/getPriceChangeColor.ts";
 
-type TopCoinsProps = {
-  topTwentyMarketCap: number
-}
-
-export const TopCoins: React.FC<TopCoinsProps> = ({ topTwentyMarketCap }) => {
-  const { globalData, topCoinsData, isLoading, error } = useCrypto();
+export const TopCoins = () => {
+  const { globalData, topCoinsData, topTwentyMarketCap, isLoading, error } = useCrypto();
 
 
   const topCoinsList = topCoinsData?.map(coin => (

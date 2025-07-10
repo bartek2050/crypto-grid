@@ -5,6 +5,7 @@ import * as React from "react";
 interface CryptoDataContextType {
   globalData: GlobalDataType | null;
   topCoinsData: TopCoinsDataList;
+  topTwentyMarketCap: number;
   isLoading: boolean;
   error: Error | null;
   refetch: () => Promise<void>;
@@ -57,9 +58,12 @@ export const CryptoDataProvider: React.FC<{ children: React.ReactNode }> = ({ ch
     refetch();
   }, []);
 
+  const topTwentyMarketCap = topCoinsData?.reduce((total, coin) => total + coin.market_cap, 0);
+
   const contextValue = {
     globalData,
     topCoinsData,
+    topTwentyMarketCap,
     isLoading,
     error,
     refetch

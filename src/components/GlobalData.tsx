@@ -1,11 +1,7 @@
 import { useCrypto } from "../context/CryptoDataContext.tsx";
 
-type GlobalDataType = {
-  topTwentyMarketCap: number
-}
-
-export const GlobalData: React.FC<GlobalDataType> = ({ topTwentyMarketCap }) => {
-  const { globalData, isLoading, error } = useCrypto();
+export const GlobalData = () => {
+  const { globalData, topTwentyMarketCap, isLoading, error } = useCrypto();
 
   const formatLastDateUpdate = (timestamp: number | undefined) => {
     if (!timestamp) {
