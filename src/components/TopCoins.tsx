@@ -24,7 +24,7 @@ export const TopCoins = () => {
   return (
     <div className="top-coins-wrapper">
       {isLoading && <p>Loading top coins...</p>}
-      {error && <p style={{ color: "red" }}>Error: {error.message}</p>}
+      {error && <p className="error">API Limits: {error.message}</p>}
       <table>
         <thead>
         <tr>

@@ -15,8 +15,8 @@ export const GlobalData = () => {
 
   return (
     <>
-      {isLoading && <p>Ładowanie danych...</p>}
-      {error && <p style={{ color: "red" }}>Błąd: {error.message}</p>}
+      {isLoading && <p>Loading...</p>}
+      {error && <p className="error">API Limits: {error.message}</p>}
       <div className="global-data-wrapper">
         <div className="global-data-cap">
           <div>
@@ -46,6 +46,7 @@ export const GlobalData = () => {
             </span>
           </div>
         </div>
+        {error && <p className="error">API Limits: {error.message}</p>}
         {globalData && <p>Last update: {formatLastDateUpdate(globalData.updated_at)}</p>}
       </div>
     </>
