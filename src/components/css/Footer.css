@@ -1,0 +1,23 @@
+.footer-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    padding: 8px 0;
+}
+
+.footer-wrapper a {
+    color: #fff;
+    text-decoration: none;
+    transition: all 1s ease;
+}
+
+.footer-wrapper a:hover {
+    transition: all 1s ease;
+    color: #31B855;
+}
+
+img {
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+}
