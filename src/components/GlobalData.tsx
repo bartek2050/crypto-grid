@@ -20,19 +20,6 @@ export const GlobalData = () => {
       <div className="global-data-wrapper">
         <div className="global-data-cap">
           <div>
-            <span>Total market cap:</span>
-            <span>
-                {(globalData?.total_market_cap.usd)?.toLocaleString(undefined, {
-                  style: "currency",
-                  maximumFractionDigits: 0,
-                  currency: "USD"
-                })}
-            </span>
-            <span>
-              (100%)
-            </span>
-          </div>
-          <div>
             <span>Top 20 market cap:</span>
             <span>
               {topTwentyMarketCap?.toLocaleString(undefined, {
@@ -43,6 +30,19 @@ export const GlobalData = () => {
             </span>
             <span>
               ({(topTwentyMarketCap / (globalData?.total_market_cap.usd || 1)).toLocaleString(undefined, { style: "percent" })})
+            </span>
+          </div>
+          <div>
+            <span />
+            <span>
+                {(globalData?.total_market_cap.usd)?.toLocaleString(undefined, {
+                  style: "currency",
+                  maximumFractionDigits: 0,
+                  currency: "USD"
+                })}
+            </span>
+            <span>
+              (100%)
             </span>
           </div>
         </div>

@@ -1,12 +1,16 @@
 .global-data-wrapper {
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
+    align-items: flex-start;
 }
 
 .global-data-cap div {
     width: 440px;
     display: flex;
+}
+
+.global-data-cap div:last-child {
+    font-size: 11px;
 }
 
 .global-data-cap div span:first-child {

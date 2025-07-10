@@ -8,9 +8,9 @@ export const TopCoins = () => {
     <tr key={coin.id}>
       <td className="coin-name"><img src={coin.image} alt={coin.name} />{coin.name}</td>
       <td>{coin.market_cap.toLocaleString()} USD</td>
-      <td>{globalData?.total_market_cap.usd && ((coin.market_cap / Number(globalData.total_market_cap.usd || 1)) * 100).toFixed(2)}%
-      </td>
       <td>{topTwentyMarketCap && ((coin.market_cap / topTwentyMarketCap) * 100).toFixed(2)}%
+      </td>
+      <td>{globalData?.total_market_cap.usd && ((coin.market_cap / Number(globalData.total_market_cap.usd || 1)) * 100).toFixed(2)}%
       </td>
       <td className="price-change">
         <div className="price-change-value">{coin.price_change_percentage_24h.toFixed(2) || 0}%</div>
@@ -30,8 +30,8 @@ export const TopCoins = () => {
         <tr>
           <th>Name</th>
           <th>Market Cap</th>
-          <th>Market Cap %</th>
-          <th>Top 20 Market Cap %</th>
+          <th>Top 20 Cap %</th>
+          <th>Total Cap %</th>
           <th>Price change 24h</th>
           <th></th>
         </tr>
