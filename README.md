@@ -1,54 +1,37 @@
-# React + TypeScript + Vite
+# 🟩 Crypto Grid
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Crypto Grid** is a hobby project that visualizes the market dominance of the top 20 cryptocurrencies. It displays
+relative dominance in a grid-based layout, using dynamic data and interactive visuals to provide a snapshot of how the
+crypto market is distributed among leading coins.
 
-Currently, two official plugins are available:
+## 🚀 Live Preview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+[Link to live version](https://cryptogrid.netlify.app/)
 
-## Expanding the ESLint configuration
+## 📸 Screenshot
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+![preview](/src/assets/screenshot.png)
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+---
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## ⚙️ Technologies Used
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+This project is built with modern web development tools and libraries:
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+- **React 19** – for building UI components
+- **D3.js (v7)** – for data visualization
+- **D3-Hierarchy** – for rendering hierarchical layouts
+- **TypeScript** – for type-safe development
+- **Vite 6** – for lightning-fast build and development tooling
+- **ESLint** – for code quality and consistent style
+
+---
+
+## 🛠️ Development Setup
+
+Clone the repository and install dependencies:
+
+```bash
+git clone https://github.com/bartek2050/crypto_grid
+cd crypto-grid
+npm install
