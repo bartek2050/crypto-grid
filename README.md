@@ -33,6 +33,6 @@ This project is built with modern web development tools and libraries:
 Clone the repository and install dependencies:
 
 ```bash
-git clone https://github.com/bartek2050/crypto_grid
+git clone https://github.com/bartek2050/crypto-grid
 cd crypto-grid
 npm install
