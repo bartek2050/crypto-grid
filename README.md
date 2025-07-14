@@ -24,6 +24,7 @@ This project is built with modern web development tools and libraries:
 - **TypeScript** – for type-safe development
 - **Vite 6** – for lightning-fast build and development tooling
 - **ESLint** – for code quality and consistent style
+- **REST API** – used to fetch and update data dynamically from CoinGecko for real-time cryptocurrency market data
 
 ---
 
